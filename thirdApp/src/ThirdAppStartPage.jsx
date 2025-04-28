@@ -7,7 +7,7 @@ const ThirdAppStartPage = () => {
   return (
     <div className="app">
       <div className="header">
-        <h2>Third  App</h2>
+        <h2>Third App</h2>
       </div>
       <DonutChart data={data}
         options={options} />
