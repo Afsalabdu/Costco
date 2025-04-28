@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>Microfrontend To do list</title>
+	<link rel="stylesheet" href="node_modules/@xterm/xterm/css/xterm.css" />
+	<script src="node_modules/@xterm/xterm/lib/xterm.js"></script>
+<script defer src="main.bundle.js"></script><script defer src="remoteEntry.js"></script></head>
+
+<body>
+	<noscript>
+		You need to enable JavaScript to run this app.
+	</noscript>
+	<script>
+        var term = new Terminal();
+        term.open(document.getElementById('terminal'));
+        term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+      </script>
+	<div id="terminal"></div>
+</body>
+
+</html>
