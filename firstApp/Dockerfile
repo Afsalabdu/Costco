@@ -8,6 +8,6 @@ RUN npm run build
  
 # Production Stage
 FROM nginx:stable-alpine AS production
-COPY --from=build /firstApp/.dist /index.html
+COPY --from=firstApp /firstApp/build/index.html index.html
 EXPOSE 3002
 CMD ["nginx", "-g", "daemon off;"]
