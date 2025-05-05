@@ -1,20 +1,22 @@
 steps:
 # Build the image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE/SERVICE_NAME:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:$COMMIT_SHA', '.']
 # Push the image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE/SERVICE_NAME:$COMMIT_SHA']
-# Deploy image to Cloud Run
+  args: ['push', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:$COMMIT_SHA']
+# Deploy react-poc to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: 
-    - 'run'
-    - 'deploy'
-    - 'SERVICE_NAME'
-    - '--image'
-    - 'LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE/SERVICE_NAME:$COMMIT_SHA'
-    - '--region'
-    - 'SERVICE_REGION'
+  args:
+      - run
+      - deploy
+      - costco-mf
+      - --image=us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:latest
+      - --platform=managed
+      - --region=us-central1
+      - --allow-unauthenticated
 images:
-- 'LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE/SERVICE_NAME:$COMMIT_SHA'
+- us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:latest
+options:
+  logging: CLOUD_LOGGING_ONLY
