@@ -1,10 +1,10 @@
 steps:
 # Build the image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:latest', '.']
 # Push the image to Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:$COMMIT_SHA']
+  args: ['push', 'us-central1-docker.pkg.dev/powerful-layout-457806-e9/costco-foundation-poc/costco-mf:latest']
 # Deploy react-poc to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
