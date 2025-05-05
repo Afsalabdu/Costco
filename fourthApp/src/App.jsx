@@ -5,7 +5,7 @@ import { data } from "./constant/constant.js";
 const App = () => {
 
   return (
-    <div>
+    <div className="">
       <Emulator data={data} />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ReactTerminal } from "react-terminal";
 import { themes } from "../constant/constant";
-import {TerminalContext} from "react-terminal"; 
+import { TerminalContext } from "react-terminal";
 const Emulator = ({ data }) => {
   const [val, setVal] = useState(data)
   const [message, setMessage] = useState(null);
@@ -9,7 +9,9 @@ const Emulator = ({ data }) => {
   const [email, setEmail] = useState(null);
   const [sent, setSent] = useState(false);
   const [theme, setTheme] = useState("my-custom-theme");
-console.log(TerminalContext,'bufferedContent')
+  const [selTab, setSelTab] = useState('iframe')
+  //iframe, terminal, reactnativewebview, webview
+  console.log(TerminalContext, 'bufferedContent')
   useEffect(() => {
     setVal(data)
   }, [data])
@@ -728,7 +730,23 @@ console.log(TerminalContext,'bufferedContent')
       );
     },
   };
-  const url ='https://www.bing.com/'
+  const iframeSrc =
+    "https://demoqa.com/"
+
+  const Iframe = ({ src, style }) => {
+    const iframeStyle = style || { width: "100%", height: "100%" };
+    return (
+      <iframe
+        title="Storm centre app"
+        style={iframeStyle}
+        id="iframe"
+        src={src}
+        data-testid="sc_iframe"
+        allow="autoplay; fullscreen;"
+        allowFullScreen
+      />
+    );
+  };
   return (
     <div
       style={{
@@ -737,18 +755,25 @@ console.log(TerminalContext,'bufferedContent')
         maxWidth: "100vw",
       }}
     >
-      {/* <ReactTerminal
+      {selTab === 'terminal' ? <ReactTerminal
         welcomeMessage={<WelcomeMessage />}
         commands={commands}
         errorMessage={<span style={error}>Command not found</span>}
         themes={themes}
         theme={theme}
-      /> */}
-        <iframe
-        id="myIframe"
-        src={url}
-        title="Bing"
-      />
+      /> : ""}
+      {selTab === 'iframe' ? <Iframe src={iframeSrc} /> : ""}
+      {/* {selTab === 'reactnativewebview' ?
+        <WebView
+          style={{ flex: 1, height: 200 }}
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          source={iframeSrc}
+        />
+        : ""} */}
+         {/* {selTab === 'webview' ?
+         <WebView src={iframeSrc} />
+        : ""} */}
     </div>
   );
 }
